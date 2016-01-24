@@ -45,8 +45,7 @@ app.post('/points', function (req, res, next) {
         name: req.body.name, 
         inside: req.body.inside,
         date: moment(req.body.date),
-        longitude: req.body.longitude,
-        latitude: req.body.latitude
+        coordinates: [req.body.longitude, req.body.latitude]
     });
 
     point.save(function (err) {
