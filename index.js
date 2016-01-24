@@ -20,9 +20,17 @@ else {
 
 var authenticate = function(req, res, next) {
     var token = req.get('X-Auth-Token');
-    if (process.env.TOKEN === undefined || token !== process.env.TOKEN) {
+    
+    var tokenIsCorrect = process.env.TOKEN !== undefined && token === process.env.TOKEN;
+    var pathRequiresAuthentication = req.path !== '/points/latest';
+    if (!tokenIsCorrect && pathRequiresAuthentication) {
         return res.status(401).json({ error: '401 Unauthorized' });
     }
+    
+    if (tokenIsCorrect) {
+        req.authenticated = true;
+    }
+
     next();
 };
 
@@ -57,7 +65,15 @@ app.get('/points', function (req, res, next) {
 app.get('/points/latest', function (req, res, next) {
     Point.findOne().sort({ date: -1 }).exec(function(err, point) {
         if (err) return next(err);
-        res.json(point);
+        if (req.authenticated) {
+            res.json(point);
+        }
+        else {
+            res.json({
+                name: point.name,
+                inside: point.inside
+            });    
+        }
     });
 });
 
