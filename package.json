@@ -1,0 +1,24 @@
+{
+  "name": "faster-downhill-tracker",
+  "version": "1.0.0",
+  "description": "GPS tracking server for Faster Downhill",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/interstateone/faster-downhill-tracker.git"
+  },
+  "author": "Brandon Evans",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/interstateone/faster-downhill-tracker/issues"
+  },
+  "homepage": "https://github.com/interstateone/faster-downhill-tracker#readme",
+  "dependencies": {
+    "body-parser": "^1.14.2",
+    "express": "^4.13.4"
+  }
+}
