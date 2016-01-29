@@ -11,11 +11,7 @@ if (process.env.DEBUG) {
     mongoose.connect('mongodb://localhost/tracker');
 }
 else {
-    var dbUsername = process.env.DB_USERNAME;
-    var dbPassword = process.env.DB_PASSWORD;
-    var dbHost = process.env.DB_HOST;
-    var dbPort = process.env.DB_PORT;
-    mongoose.connect('mongodb://'+dbUsername+':'+dbPassword+'@'+dbHost+':'+dbPort+'/tracker');
+    mongoose.connect(process.env.MONGO_URL);
 }
 
 var authenticate = function(req, res, next) {
