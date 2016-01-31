@@ -64,7 +64,7 @@ app.get('/points/latest', function (req, res, next) {
             res.json(point);
         }
         else {
-            res.json({
+            res.jsonp({
                 name: point.name,
                 inside: point.inside
             });    
